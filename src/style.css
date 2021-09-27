@@ -195,6 +195,18 @@ body, button, a {
     overflow: hidden;
 }
 
+#kang {
+    background-image: url(../backup/강호동/강호동0.jpg);
+}
+
+#kong {
+    background-image: url(../backup/공유/공유0.jpg);
+}
+
+#lee {
+    background-image: url(../backup/lee.jpeg);
+}
+
 .cont-card .card-result-name {
     position: relative;
     font-size: 3.6rem;
