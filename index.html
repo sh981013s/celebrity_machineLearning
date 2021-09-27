@@ -112,6 +112,7 @@
             prediction.sort((a,b)=> (b.probability-a.probability))
             // 가장 일치도가 높게 나온 className을 result에 넣어준다
             result = prediction[0].className
+            console.log(prediction[0].probability);
         }
         
         //결과 출력하기 결과값과 일치하는 html파일로 이동됩니다!
