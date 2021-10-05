@@ -18,25 +18,25 @@
     <!-- 백그라운드 비디오 시작 -->
     <div class="video-background">
         <div class="video-foreground">
-            <iframe frameborder="0" height="100%" width="100%"
-                src="https://www.youtube.com/embed/mbSKDPkxRLE?controls=0&mute=1&loop=5&autoplay=1&rel=0&controls=0&showinfo=0"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+<!--            <iframe frameborder="0" height="100%" width="100%"-->
+<!--                src="https://www.youtube.com/embed/mbSKDPkxRLE?controls=0&mute=1&loop=5&autoplay=1&rel=0&controls=0&showinfo=0"-->
+<!--                title="YouTube video player" frameborder="0"-->
+<!--                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                allowfullscreen>-->
+<!--            </iframe>-->
         </div>
     </div>
     <!-- 백그라운드 비디오 끝 -->
     <div class="cont-main">
         <div class="tit">나와 닮은 연예인 찾기</div>
-        <div class="img-slide">
-            <img class="img-slide-item active" src="assets/1.png" alt="이미지">
-            <img class="img-slide-item" src="assets/2.png" alt="이미지">
-            <img class="img-slide-item" src="assets/3.png" alt="이미지">
-            <img class="img-slide-item" src="assets/4.png" alt="이미지">
-            <img class="img-slide-item" src="assets/5.png" alt="이미지">
-            <img class="img-slide-item" src="assets/6.png" alt="이미지">
-        </div>
+<!--        <div class="img-slide">-->
+<!--            <img class="img-slide-item active" src="assets/1.png" alt="이미지">-->
+<!--            <img class="img-slide-item" src="assets/2.png" alt="이미지">-->
+<!--            <img class="img-slide-item" src="assets/3.png" alt="이미지">-->
+<!--            <img class="img-slide-item" src="assets/4.png" alt="이미지">-->
+<!--            <img class="img-slide-item" src="assets/5.png" alt="이미지">-->
+<!--            <img class="img-slide-item" src="assets/6.png" alt="이미지">-->
+<!--        </div>-->
         <button type="button"  onclick="init()" class="btn-test-start">테스트 시작!</button>
     </div>
     <div class="cont">
@@ -59,27 +59,18 @@
         let btn = document.querySelector(".btn-start");
 
 
-        // More API functions here:
-        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-        // the link to your model provided by Teachable Machine export panel
         const URL = "./my_model/";
 
         let model, webcam, labelContainer, maxPredictions;
 
-        // Load the image model and setup the webcam
         async function init() {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
-            // load the model and metadata
-            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-            // or files from your local hard drive
-            // Note: the pose library adds "tmImage" object to your window (window.tmImage)
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            // Convenience function to setup a webcam
             const flip = true; // whether to flip the webcam
             webcam = new tmImage.Webcam(390, 390, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
@@ -92,7 +83,6 @@
 
             window.requestAnimationFrame(loop);
 
-            // append elements to the DOM
             document.getElementById("webcam-container").appendChild(webcam.canvas);
             labelContainer = document.getElementById("label-container");
         }
@@ -102,9 +92,7 @@
             await predict();
             window.requestAnimationFrame(loop);
         }
-        // run the webcam image through the image model
         async function predict() {
-            // predict can take in an image, video or canvas html element
             const prediction = await model.predict(webcam.canvas);
 
             
@@ -115,7 +103,6 @@
             console.log(prediction[0].probability);
         }
         
-        //결과 출력하기 결과값과 일치하는 html파일로 이동됩니다!
         btn.addEventListener("click", function() {
             window.location.href = `./${result}.html`;
         });
